@@ -4,7 +4,13 @@ server:
 spring:
     application:
         name: auth-gateway
-
+    security:
+        jwt:
+            secretKey: ${JWT_SECRET_KEY}
+            expiration: 86400000
+            refresh-token:
+                expiration: 2592000000
+            cookie-name: auth-token
     datasource:
         url: jdbc:postgresql://localhost:5432/pruebas
         username: usuariopruebas
@@ -16,9 +22,6 @@ spring:
         show-sql: false
         hibernate:
             ddl-auto: update
-
-    config:
-        import: optional:configserver:http://localhost:8084
 
 springdoc:
     api-docs:
